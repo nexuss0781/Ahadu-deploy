@@ -1,6 +1,7 @@
 // Ahadu Deploy / Terminal Orchard: warm editorial workspace, dark terminal surfaces, Ahadu Moss readiness states.
 import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { startLogin, startNexussGithubLogin } from "@/const";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -87,8 +88,7 @@ type FrameworkKey = keyof typeof frameworks;
 
 function RailItem({ icon: Icon, label, active, soon }: { icon: typeof Radar; label: string; active?: boolean; soon?: boolean }) {
   return (
-    <button
-      onClick={() => soon && toast.info(`${label} is reserved for the next phase.`)}
+    <button onClick={() => soon && toast.info(`${label} is reserved for the next phase.`)}
       className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-all duration-200 ${active ? "bg-[#B8F36B] text-[#172019] shadow-[0_5px_20px_rgba(184,243,107,0.12)]" : "text-[#A7B0A2] hover:bg-white/7 hover:text-white"}`}
     >
       <Icon size={16} strokeWidth={active ? 2.4 : 1.8} />
@@ -183,13 +183,13 @@ export default function Home() {
           <RailItem icon={CircleHelp} label="Documentation" soon />
         </nav>
 
-        <div className="mt-auto rounded-2xl border border-white/8 bg-white/4 p-3.5">
+        <button onClick={startLogin} className="mb-4 flex w-full items-center justify-between rounded-xl border border-white/10 bg-white/4 px-3 py-2.5 text-left text-[11px] text-[#C2CBC0] transition hover:border-white/20 hover:bg-white/8"><span className="flex items-center gap-2"><ShieldCheck size={14} className="text-[#B8F36B]" /> Use Manus fallback</span><ArrowUpRight size={12} className="text-[#7F8C7B]" /></button><div className="mt-auto rounded-2xl border border-white/8 bg-white/4 p-3.5">
           <div className="flex items-start gap-2.5">
             <div className="mt-0.5 grid h-7 w-7 place-items-center rounded-lg bg-[#2A3529] text-[#B8F36B]"><ShieldCheck size={15} /></div>
             <div>
-              <div className="text-[12px] font-semibold text-white">GitHub access is off</div>
-              <p className="mt-1 text-[11px] leading-[1.45] text-[#8A9588]">Core mode only. Authorization arrives when you approve phase two.</p>
-              <button onClick={() => toast.info("GitHub authorization is intentionally deferred.")} className="mt-3 flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.12em] text-[#B8F36B]">Learn about the roadmap <ArrowUpRight size={11} /></button>
+              <div className="text-[12px] font-semibold text-white">Nexuss GitHub ready</div>
+              <p className="mt-1 text-[11px] leading-[1.45] text-[#8A9588]">GitHub sign-in uses a server-side handoff. Manus remains available as fallback.</p>
+              <button onClick={startNexussGithubLogin} className="mt-3 flex items-center gap-1 font-mono text-[9px] uppercase tracking-[0.12em] text-[#B8F36B]">Connect repository access <ArrowUpRight size={11} /></button>
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function Home() {
           <div className="flex items-center gap-3"><div className="grid h-8 w-8 place-items-center rounded-lg bg-[#172019] p-1.5 lg:hidden"><img src="/manus-storage/ahadu-deploy-mark_d95cecff.png" alt="Ahadu Deploy mark" className="h-full w-full object-contain" /></div><span className="font-display text-[15px] font-bold tracking-[-0.04em] text-[#172019]">Ahadu Deploy</span><ChevronRight size={14} className="text-[#A4A69D]" /><span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#9B9D95]">Repository inspector</span></div>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="sm" onClick={() => toast.info("Documentation will open in a future phase.")} className="hidden gap-2 text-[#697066] hover:bg-[#E8E3D9] sm:flex"><CircleHelp size={15} />Docs</Button>
-            <Button size="sm" onClick={() => toast.info("GitHub authorization is not enabled in the core MVP.")} className="gap-2 rounded-lg bg-[#172019] text-[#F4F0E8] hover:bg-[#2D3D2D]"><Github size={14} />Connect GitHub <span className="font-mono text-[9px] uppercase text-[#B8F36B]">later</span></Button>
+            <Button size="sm" onClick={startNexussGithubLogin} className="gap-2 rounded-lg bg-[#172019] text-[#F4F0E8] hover:bg-[#2D3D2D]"><Github size={14} />Connect GitHub <span className="font-mono text-[9px] uppercase text-[#B8F36B]">Nexuss</span></Button>
           </div>
         </header>
 
