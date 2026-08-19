@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ahadu-deploy.dev/schema/ahadu.json",
+  "version": 1,
+  "name": "field-notes",
+  "framework": "node",
+  "source": {
+    "directory": "."
+  },
+  "entry": {
+    "file": "server.js",
+    "command": "node server.js",
+    "port": 80,
+    "runner": "wasix"
+  },
+  "commands": {
+    "install": "npm ci",
+    "build": "npm run build"
+  },
+  "environment": {
+    "NODE_ENV": "production"
+  },
+  "deploy": {
+    "provider": "wasmer",
+    "region": "auto",
+    "appName": "field-notes"
+  }
+}
