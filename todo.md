@@ -16,3 +16,9 @@
 - [ ] Verify authenticated session retrieval, logout, signed-out startup, and handoff replay rejection.
 - [x] Add and execute focused tests for Nexuss session and replay boundaries.
 - [ ] Save a new audited checkpoint and report verified versus unverified results.
+
+## GitHub repository sync
+
+- [ ] Verify the public `Ahadu-deploy` repository and configured remote.
+- [ ] Commit and push the current Ahadu Deploy project, including Nexuss Auth and Manus fallback changes.
+- [ ] Confirm the remote branch and report the repository URL.
